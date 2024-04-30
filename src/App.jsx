@@ -13,9 +13,9 @@ import Project from "./pages/Project";
 import { DarkModeprovider } from "./context/DarkmodeContext";
 import OwnerLayout from "./features/owner/OwnerLayout";
 import FreelancerLayout from "./features/freelancer/FreelancerLayout";
-import FreelancerDashboard from "./features/freelancer/FreelancerDashboard";
-import SubmitedProjects from "./features/freelancer/SubmitedProjects";
 import Proposals from "./features/freelancer/Proposals";
+import FreelancerDashboard from "./pages/FreelancerDashboard";
+import SubmitedProjects from "./pages/SubmitedProjects";
 
 const queryClient = new QueryClient();
 
