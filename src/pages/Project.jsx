@@ -1,16 +1,16 @@
 import React from "react";
-import useProjects from "../features/project/useProject";
 import Loading from "../ui/Loading";
 import ProjectHeader from "../features/project/ProjectHeader";
-import ProposalTable from "../features/proposal/ProposalTable";
+import ProposalsTable from "../features/project/ProposalsTable";
+import useProject from "../features/project/useProject";
 
 function Project() {
-  const { isLoading, project } = useProjects();
+  const { isLoading, project } = useProject();
   if (isLoading) return <Loading />;
   return (
     <div>
       <ProjectHeader project={project} />
-      <ProposalTable proposals={project.proposals} />
+      <ProposalsTable proposals={project.proposals} />
     </div>
   );
 }

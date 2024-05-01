@@ -1,47 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "../../ui/Table";
+import toPersianNumbersWithComma, {
+  toPersianNumbers,
+} from "../../utils/toPersianNumbers";
 import truncateText from "../../utils/truncateText";
-import Modal from "../../ui/Modal";
-import ChangeProposalStatus from "../project/ChangeProposalStatus";
+
+const statusStyle = [
+  { label: "رد شده", className: "badge--danger" },
+  {
+    label: "در انتظار تایید",
+    className: "badge--secondary",
+  },
+  {
+    label: "تایید شده",
+    className: "badge--success",
+  },
+];
 
 function ProposalRow({ proposal, index }) {
-  const { user, status } = proposal;
-  const [open, setOpen] = useState(false);
-  const statusStyle = [
-    { lable: "رد شده", className: "badge--danger" },
-
-    { lable: "در انتظار تایید", className: "badge--secondary" },
-
-    { lable: "تایید شده", className: "badge--success" },
-  ];
-
+  const { status, description, duration, price } = proposal;
   return (
     <Table.Row>
       <td>{index + 1}</td>
-      <td>{user.name}</td>
-      <td>{truncateText(proposal.description, 25)}</td>
-      <td>{proposal.duration} روز</td>
-      <td>{proposal.price}T</td>
+      <td>{truncateText(description, 60)}</td>
+      <td>{toPersianNumbers(duration)}روز</td>
+      <td>{toPersianNumbersWithComma(price)}</td>
       <td>
         <span className={`badge ${statusStyle[status].className}`}>
-          {statusStyle[status].lable}
+          {statusStyle[status].label}
         </span>
-      </td>
-      <td>
-        <Modal
-          title="تغییر وضعیت درخواست"
-          open={open}
-          onClose={() => setOpen(false)}
-        >
-          <ChangeProposalStatus
-            proposalId={proposal._id}
-            name="status"
-            onClose={() => setOpen(false)}
-          />
-        </Modal>
-        <button onClick={() => setOpen(true)} className="">
-          تغییر وضعیت درخواست
-        </button>
       </td>
     </Table.Row>
   );

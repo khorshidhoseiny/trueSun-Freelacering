@@ -5,7 +5,7 @@ import {
 } from "../../services/projectService";
 import { useParams } from "react-router-dom";
 
-export default function useProjects() {
+export default function useProject() {
   const { id } = useParams();
 
   const { data, isLoading } = useQuery({

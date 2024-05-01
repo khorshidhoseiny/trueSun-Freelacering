@@ -3,7 +3,6 @@ import RHFSelect from "../../ui/RHFSelect";
 import { useForm } from "react-hook-form";
 import usechangeProposalStatus from "../proposal/useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
-import useProjects from "./useProject";
 import { useParams } from "react-router-dom";
 import Loading from "../../ui/Loading";
 

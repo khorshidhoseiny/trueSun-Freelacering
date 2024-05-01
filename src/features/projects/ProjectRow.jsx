@@ -16,6 +16,7 @@ function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDaleteOpen, setIsDeleteOpen] = useState(false);
   const { removeProject } = useRemoveProject();
+
   return (
     <Table.Row>
       <td>{index + 1}</td>

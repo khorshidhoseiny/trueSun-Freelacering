@@ -12,7 +12,6 @@ function OwnerLayout() {
           <HiHome />
           <span> خانه</span>
         </CustomNavlink>
-
         <CustomNavlink to={"projects"}>
           <HiCollection />
           <span>پروژه ها</span>
