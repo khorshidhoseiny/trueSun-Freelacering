@@ -1,8 +1,9 @@
 import React from "react";
 import RHFSelect from "../../ui/RHFSelect";
 import { useForm } from "react-hook-form";
-import usechangeProposalStatus from "../proposal/useChangeProposalStatus";
+import usechangeProposalStatus from "../project/useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
+
 import { useParams } from "react-router-dom";
 import Loading from "../../ui/Loading";
 
@@ -21,7 +22,7 @@ function ChangeProposalStatus({ proposalId, onClose }) {
 
   const onSubmit = (data) => {
     ChangeStatus(
-      { id: proposalId, data },
+      { proposalId, projectId, ...data },
       {
         onSuccess: () => {
           onClose();

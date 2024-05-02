@@ -4,7 +4,7 @@ import Table from "../../ui/Table";
 import ProposalRow from "./ProposalRow";
 
 function ProposalsTable({ proposals }) {
-  if (!proposals.length) return <Empty resourceName={درخواست} />;
+  if (!proposals.length) return <Empty resourceName={"درخواست "} />;
 
   return (
     <Table>
