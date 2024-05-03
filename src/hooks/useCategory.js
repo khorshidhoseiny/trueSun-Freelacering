@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCategoriApi } from "../services/categoryService";
-import { data } from "autoprefixer";
 
 export default function useCategory() {
   const { data, isLoading } = useQuery({
