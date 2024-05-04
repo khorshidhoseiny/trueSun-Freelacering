@@ -21,6 +21,6 @@ export function toggleProjectApi({ id, data }) {
 export function getProjectApi(id) {
   return http.get(`/project/${id}`).then(({ data }) => data.data);
 }
-export function getProjectsApi() {
-  return http.get("/project/list").then(({ data }) => data.data);
+export function getProjectsApi(qs) {
+  return http.get(`/project/list${qs}`).then(({ data }) => data.data);
 }

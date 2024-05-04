@@ -2,15 +2,17 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import Select from "./Select";
 
-function FilterDropDown({ FilterField, options }) {
+function FilterDropDown({ options, filterField }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const value = searchParams.get(FilterField) || "";
+  const filterValue = searchParams.get(filterField) || "";
   const handleSubmit = (e) => {
-    searchParams.set(value, e.target.value);
+    searchParams.set(filterField, e.target.value);
     setSearchParams(searchParams);
   };
 
-  return <Select value={value} onChange={handleSubmit} options={options} />;
+  return (
+    <Select value={filterValue} onChange={handleSubmit} options={options} />
+  );
 }
 
 export default FilterDropDown;
