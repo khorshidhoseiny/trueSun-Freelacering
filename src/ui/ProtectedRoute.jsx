@@ -8,15 +8,19 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   //1 load the authenticated user
-  const { isAuthenticated, isAuthorized, isLoading } = useAuthorize();
-
+  const { isAuthenticated, isAuthorized, isLoading, isVerfied } =
+    useAuthorize();
   // 2 check this is Authenticated & Athurise or not ?
   useEffect(() => {
     if (!isAuthenticated && !isLoading) navigate("/auth");
+    if (!isVerfied && !isLoading) {
+      toast.error("پروفایل شما هنوز تایید نشده است.");
+      navigate("/");
+    }
     if (!isAuthorized && !isLoading) {
       navigate("/not-access", { replace: true });
     }
-  }, [isAuthenticated, isAuthorized, isLoading, navigate]);
+  }, [isAuthenticated, isAuthorized, isLoading, navigate, isVerfied]);
 
   //3- while Loading
   if (isLoading)
@@ -25,7 +29,6 @@ function ProtectedRoute({ children }) {
         <Loading />
       </div>
     );
-
   //4 if user [Authenticated & Athorize]
   if (isAuthenticated && isAuthorized) return children;
 }
