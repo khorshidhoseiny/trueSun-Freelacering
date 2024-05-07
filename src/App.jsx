@@ -13,13 +13,14 @@ import Project from "./pages/Project";
 import { DarkModeprovider } from "./context/DarkmodeContext";
 import OwnerLayout from "./features/owner/OwnerLayout";
 import FreelancerLayout from "./features/freelancer/FreelancerLayout";
-import Proposals from "./features/freelancer/Proposals";
+import Proposals from "./pages/Proposals";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import SubmitedProjects from "./pages/SubmitedProjects";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import AdminLayout from "./features/admin/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import Users from "./pages/Users";
 
 const queryClient = new QueryClient();
 
@@ -77,7 +78,7 @@ function App() {
             >
               <Route index element={<Navigate to={"dashboard"} replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
-              {/* <Route path="proposals" element={<Proposals />} /> */}
+              <Route path="users" element={<Users />} />
               {/* <Route path="projects" element={<SubmitedProjects />} /> */}
             </Route>
 

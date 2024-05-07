@@ -1,5 +1,5 @@
 import React from "react";
-import ProposalTable from "../proposal/ProposalTable";
+import ProposalTable from "../features/proposal/ProposalTable";
 
 function Proposals() {
   return (
