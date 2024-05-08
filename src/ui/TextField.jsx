@@ -9,10 +9,9 @@ function TextField({
   validationSchema,
   type = "text",
 }) {
-  console.log(register(name));
   return (
-    <div className="flex-col mx-auto space-y-3 justify-center w-full  ">
-      <label htmlFor={name}>
+    <div>
+      <label className="mb-2 block text-secondary-700" htmlFor={name}>
         {label} {required && <span className="text-error">*</span>}
       </label>
       <input

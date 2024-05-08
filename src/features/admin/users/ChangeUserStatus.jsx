@@ -1,13 +1,11 @@
-import React from "react";
-import RHFSelect from "../../ui/RHFSelect";
-import { useForm } from "react-hook-form";
-import usechangeProposalStatus from "../project/useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
-
+import { useForm } from "react-hook-form";
+import usechangeUserStatus from "./useChangeUserStatus";
 import { useParams } from "react-router-dom";
-import Loading from "../../ui/Loading";
+import RHFSelect from "../../../ui/RHFSelect";
+import Loading from "../../../ui/Loading";
 
-function ChangeProposalStatus({ proposalId, onClose }) {
+function ChangeUserStatus({ userId, onClose }) {
   const options = [
     { label: "رد شده", value: 0 },
 
@@ -16,17 +14,17 @@ function ChangeProposalStatus({ proposalId, onClose }) {
     { label: "تایید شده", value: 2 },
   ];
   const { register, handleSubmit } = useForm();
-  const { ChangeStatus, isEditing } = usechangeProposalStatus();
-  const { id: projectId } = useParams();
+  const { ChangeUserStatus, isEditing } = usechangeUserStatus();
+
   const queryClient = useQueryClient();
 
   const onSubmit = (data) => {
-    ChangeStatus(
-      { proposalId, projectId, ...data },
+    ChangeUserStatus(
+      { userId, data },
       {
         onSuccess: () => {
           onClose();
-          queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+          queryClient.invalidateQueries({ queryKey: ["users"] });
         },
       }
     );
@@ -56,4 +54,4 @@ function ChangeProposalStatus({ proposalId, onClose }) {
   );
 }
 
-export default ChangeProposalStatus;
+export default ChangeUserStatus;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "../../ui/TextField";
 import RadioInput from "../../ui/RadioInput";
 import { useMutation } from "@tanstack/react-query";
@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import RadioButtonGroup from "../../ui/RadioButtonGroup";
-import RHFSelect from "../../ui/RHFSelect";
 
 function CompleteProfileForm() {
   const {
