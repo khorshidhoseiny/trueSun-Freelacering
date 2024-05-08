@@ -1,5 +1,4 @@
-import { Navigate, Route, Router, Routes } from "react-router-dom";
-import "./App.css";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Auth from "./pages/Auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
@@ -27,8 +26,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <DarkModeprovider>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <Toaster />
         <div>
           <Routes>
@@ -79,7 +78,8 @@ function App() {
               <Route index element={<Navigate to={"dashboard"} replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="users" element={<Users />} />
-              {/* <Route path="projects" element={<SubmitedProjects />} /> */}
+              <Route path="proposals" element={<Proposals />} />
+              <Route path="projects" element={<SubmitedProjects />} />
             </Route>
 
             <Route path="/" index element={<Home />} />
