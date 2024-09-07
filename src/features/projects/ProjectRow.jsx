@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "../../ui/Modal";
-import { TbPencilMinus } from "react-icons/tb";
-import { HiEye, HiOutlineTrash, HiPencil } from "react-icons/hi";
 import Table from "../../ui/Table";
-import truncateText from "../../utils/truncateText";
-import toPersianNumbersWithComma from "../../utils/toPersianNumbers";
 import toLocalDateShort from "../../utils/toLocalDateShort";
+import { toPersianNumbersWithComma } from "../../utils/toPersianNumbers";
+import truncateText from "../../utils/truncateText";
+
+import { HiEye, HiOutlineTrash } from "react-icons/hi";
+import { TbPencilMinus } from "react-icons/tb";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import useRemoveProject from "./useRemoveProject";
 import CreateProjectForm from "./CreateProjectForm";
-import { Switch } from "@headlessui/react";
 import ToggleProjectStatus from "./ToggleProjectStatus";
 import { Link } from "react-router-dom";
+
 function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isDaleteOpen, setIsDeleteOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const { removeProject } = useRemoveProject();
 
   return (
     <Table.Row>
       <td>{index + 1}</td>
       <td>{truncateText(project.title, 30)}</td>
-      <td>{project.category.title}</td>
+      <td> {project.category.title}</td>
       <td>{toPersianNumbersWithComma(project.budget)}</td>
       <td>{toLocalDateShort(project.deadline)}</td>
       <td>
@@ -40,19 +41,13 @@ function ProjectRow({ project, index }) {
       <td>
         <div className="flex items-center gap-x-4">
           <>
-            <button
-              onClick={() => {
-                setIsEditOpen(true);
-              }}
-            >
+            <button onClick={() => setIsEditOpen(true)}>
               <TbPencilMinus className="w-5 h-5 text-primary-900" />
             </button>
             <Modal
-              title={`ویرایش ${project.title} `}
+              title={`ویرایش ${project.title}`}
               open={isEditOpen}
-              onClose={() => {
-                setIsEditOpen(false);
-              }}
+              onClose={() => setIsEditOpen(false)}
             >
               <CreateProjectForm
                 projectToEdit={project}
@@ -65,11 +60,9 @@ function ProjectRow({ project, index }) {
               <HiOutlineTrash className="w-5 h-5 text-error" />
             </button>
             <Modal
-              title={`حذف ${project.title} `}
-              open={isDaleteOpen}
-              onClose={() => {
-                setIsDeleteOpen(false);
-              }}
+              title={`حذف ${project.title}`}
+              open={isDeleteOpen}
+              onClose={() => setIsDeleteOpen(false)}
             >
               <ConfirmDelete
                 resourceName={project.title}
@@ -86,12 +79,11 @@ function ProjectRow({ project, index }) {
         </div>
       </td>
       <td>
-        <Link to={project._id}>
+        <Link to={project._id} className="flex justify-center">
           <HiEye className="w-5 h-5 text-primary-800" />
         </Link>
       </td>
     </Table.Row>
   );
 }
-
 export default ProjectRow;

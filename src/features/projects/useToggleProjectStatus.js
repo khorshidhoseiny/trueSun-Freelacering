@@ -1,21 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { toggleProjectApi } from "../../services/projectService";
+import { toast } from "react-hot-toast";
+import { toggleProjectStatusApi } from "../../services/projectService";
 
-export default function useToggleProject() {
+export default function useToggleProjectStatus() {
   const queryClient = useQueryClient();
 
-  const { mutate: ToggleProject, isPending: isUpdating } = useMutation({
-    mutationFn: toggleProjectApi,
+  const { isPending: isUpdating, mutate: toggleProjectStatus } = useMutation({
+    mutationFn: toggleProjectStatusApi,
     onSuccess: (data) => {
       toast.success(data.message);
+
       queryClient.invalidateQueries({
         queryKey: ["owner-projects"],
       });
     },
-    onError: (err) => {
-      toast.error(err?.response?.data?.message);
-    },
+
+    onError: (err) => toast.error(err?.response?.data?.message),
   });
-  return { ToggleProject, isUpdating };
+
+  return { isUpdating, toggleProjectStatus };
 }

@@ -1,24 +1,22 @@
-import React from "react";
-import AppLayout from "../../ui/AppLayout";
-import Sidebar from "../../ui/Sidebar";
-import CustomNavlink from "../../ui/CustomeNavlink";
 import { HiCollection, HiHome } from "react-icons/hi";
+import AppLayout from "../../ui/AppLayout";
+import { CustomNavLink } from "../../ui/CustomNavlLink";
+import SidebarMenu from "../../ui/SidebarMenu";
 
 function OwnerLayout() {
   return (
     <AppLayout>
-      <Sidebar>
-        <CustomNavlink to={"dashboard"}>
+      <SidebarMenu>
+        <CustomNavLink to="dashboard">
           <HiHome />
-          <span> خانه</span>
-        </CustomNavlink>
-        <CustomNavlink to={"projects"}>
+          <span>داشبورد</span>
+        </CustomNavLink>
+        <CustomNavLink to="projects">
           <HiCollection />
           <span>پروژه ها</span>
-        </CustomNavlink>
-      </Sidebar>
+        </CustomNavLink>
+      </SidebarMenu>
     </AppLayout>
   );
 }
-
 export default OwnerLayout;

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { HiOutlinePlus } from "react-icons/hi";
 import Modal from "../../ui/Modal";
 import CreateProjectForm from "./CreateProjectForm";
 
 function ProjectsHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex mb-6 border-b pb-4 border-secondary-300 justify-between items-center">
-      <h2 className="font-bold text-secondary-600 ">پروژه های شما</h2>
+    <div className="flex items-center justify-between mb-8">
+      <h1 className="font-black text-secondary-700 text-xl">پروژه های شما</h1>
       <Modal
         title="اضافه کردن پروژه جدید"
         open={open}
@@ -16,12 +17,12 @@ function ProjectsHeader() {
       </Modal>
       <button
         onClick={() => setOpen(true)}
-        className="btn btn--primary items-center gap-x-2 "
+        className="btn btn--primary flex items-center gap-x-2"
       >
-        اضافه کردن پروژه جدید
+        <HiOutlinePlus />
+        <span>اضافه کردن پروژه</span>
       </button>
     </div>
   );
 }
-
 export default ProjectsHeader;

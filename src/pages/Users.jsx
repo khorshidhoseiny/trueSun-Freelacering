@@ -1,15 +1,11 @@
-import React from "react";
-import UserTabel from "../features/admin/users/UserTabel";
+import UsersTable from "../features/admin/users/UsersTable";
 
 function Users() {
   return (
     <div>
-      <h1 className="font-black mb-8 text-secondary-700 text-xl">
-      کاربران
-      </h1>
-      <UserTabel />;
+      <h1 className="font-black text-secondary-700 text-xl mb-8">کاربران</h1>
+      <UsersTable />
     </div>
   );
 }
-
 export default Users;

@@ -1,8 +1,6 @@
-import React from "react";
-import DashboardLayout from "../features/freelancer/DashboardLayout";
+import DashboardLayout from "../features/freelnacer/DashboardLayout";
 
 function FreelancerDashboard() {
   return <DashboardLayout />;
 }
-
 export default FreelancerDashboard;

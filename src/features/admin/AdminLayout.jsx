@@ -1,37 +1,35 @@
-import React from "react";
 import AppLayout from "../../ui/AppLayout";
-import Sidebar from "../../ui/Sidebar";
-import CustomNavlink from "../../ui/CustomeNavlink";
+import { CustomNavLink } from "../../ui/CustomNavlLink";
+import Sidebar from "../../ui/SidebarMenu";
 import {
   HiCollection,
   HiHome,
-  HiOutlineViewGrid,
   HiUser,
+  HiOutlineViewGrid,
 } from "react-icons/hi";
 
 function AdminLayout() {
   return (
     <AppLayout>
       <Sidebar>
-        <CustomNavlink to={"dashboard"}>
+        <CustomNavLink to="dashboard">
           <HiHome />
-          <span> داشبورد</span>
-        </CustomNavlink>
-        <CustomNavlink to={"users"}>
+          <span>داشبورد</span>
+        </CustomNavLink>
+        <CustomNavLink to="users">
           <HiUser />
-          <span> کاربران</span>
-        </CustomNavlink>
-        <CustomNavlink to={"projects"}>
+          <span>کاربران</span>
+        </CustomNavLink>
+        <CustomNavLink to="projects">
           <HiOutlineViewGrid />
           <span>پروژه ها</span>
-        </CustomNavlink>
-        <CustomNavlink to={"proposals"}>
+        </CustomNavLink>
+        <CustomNavLink to="proposals">
           <HiCollection />
-          <span> درخواست ها</span>
-        </CustomNavlink>
+          <span>درخواست ها</span>
+        </CustomNavLink>
       </Sidebar>
     </AppLayout>
   );
 }
-
 export default AdminLayout;

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+console.log(BASE_URL, "baseURL");
 
 const app = axios.create({
   baseURL: BASE_URL,
@@ -9,17 +10,13 @@ const app = axios.create({
 
 app.interceptors.request.use(
   (res) => res,
-  (err) => {
-    return Promise.reject(err);
-  }
+  (err) => Promise.reject(err)
 );
 
 app.interceptors.response.use(
   (res) => res,
   async (err) => {
-    console.log(err.config);
     const originalConfig = err.config;
-
     if (err.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       try {
@@ -34,6 +31,7 @@ app.interceptors.response.use(
     return Promise.reject(err);
   }
 );
+
 const http = {
   get: app.get,
   post: app.post,

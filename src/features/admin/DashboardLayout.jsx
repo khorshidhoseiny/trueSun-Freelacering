@@ -1,16 +1,17 @@
-import React from "react";
-import DashboardHeader from "../../pages/DashboardHeader";
-import useProposal from "../proposal/useProposal";
 import useProjects from "../../hooks/useProjects";
-import useUsers from "./useUsers";
+import DashboardHeader from "../../ui/DashboardHeader";
 import Loading from "../../ui/Loading";
+import useProposals from "../proposals/useProposals";
 import Stats from "./Stats";
+import useUsers from "./useUsers";
 
 function DashboardLayout() {
-  const { proposals, isLoading: Loading1 } = useProposal();
-  const { isLoading: Loading2, projects } = useProjects();
-  const { isLoading: Loading3, users } = useUsers();
-  if (Loading1 || Loading2 || Loading3) return <Loading />;
+  const { isLoading: isLoading1, proposals } = useProposals();
+  const { isLoading: isLoading2, projects } = useProjects();
+  const { isLoading: isLoading3, users } = useUsers();
+
+  if (isLoading1 || isLoading2 || isLoading3) return <Loading />;
+
   return (
     <div>
       <DashboardHeader />
@@ -22,5 +23,4 @@ function DashboardLayout() {
     </div>
   );
 }
-
 export default DashboardLayout;

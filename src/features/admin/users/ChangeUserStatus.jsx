@@ -1,26 +1,32 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import usechangeUserStatus from "./useChangeUserStatus";
-import { useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import RHFSelect from "../../../ui/RHFSelect";
 import Loading from "../../../ui/Loading";
+import useChangeUserStatus from "./useChangeUserStatus";
+
+const options = [
+  {
+    label: "رد شده",
+    value: 0,
+  },
+  {
+    label: "در انتظار تایید",
+    value: 1,
+  },
+  {
+    label: "تایید شده",
+    value: 2,
+  },
+];
 
 function ChangeUserStatus({ userId, onClose }) {
-  const options = [
-    { label: "رد شده", value: 0 },
-
-    { label: "در انتظار تایید", value: 1 },
-
-    { label: "تایید شده", value: 2 },
-  ];
   const { register, handleSubmit } = useForm();
-  const { ChangeUserStatus, isEditing } = usechangeUserStatus();
-
+  const { changeUserStatus, isUpdating } = useChangeUserStatus();
   const queryClient = useQueryClient();
 
   const onSubmit = (data) => {
-    ChangeUserStatus(
-      { userId, data },
+    changeUserStatus(
+      { userId, data }, // {userId, data: {status:0, 1, 2}}
       {
         onSuccess: () => {
           onClose();
@@ -36,16 +42,16 @@ function ChangeUserStatus({ userId, onClose }) {
         <RHFSelect
           name="status"
           label="تغییر وضعیت"
-          required
           register={register}
+          required
           options={options}
         />
         <div className="!mt-8">
-          {isEditing ? (
+          {isUpdating ? (
             <Loading />
           ) : (
             <button className="btn btn--primary w-full" type="submit">
-              تغییر وضعیت
+              تایید
             </button>
           )}
         </div>
@@ -53,5 +59,4 @@ function ChangeUserStatus({ userId, onClose }) {
     </div>
   );
 }
-
 export default ChangeUserStatus;

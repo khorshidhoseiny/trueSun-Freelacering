@@ -10,6 +10,8 @@ export default function useProject() {
     queryFn: () => getProjectApi(id),
     retry: false,
   });
+
   const { project } = data || {};
+
   return { isLoading, project };
 }

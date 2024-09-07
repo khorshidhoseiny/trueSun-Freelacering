@@ -1,28 +1,34 @@
-import React from "react";
-import RHFSelect from "../../ui/RHFSelect";
 import { useForm } from "react-hook-form";
-import usechangeProposalStatus from "../project/useChangeProposalStatus";
+import RHFSelect from "../../ui/RHFSelect";
+import useChangeProposalStaus from "./useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
-
 import { useParams } from "react-router-dom";
 import Loading from "../../ui/Loading";
 
+const options = [
+  {
+    label: "رد شده",
+    value: 0,
+  },
+  {
+    label: "در انتظار تایید",
+    value: 1,
+  },
+  {
+    label: "تایید شده",
+    value: 2,
+  },
+];
+
 function ChangeProposalStatus({ proposalId, onClose }) {
-  const options = [
-    { label: "رد شده", value: 0 },
-
-    { label: "در انتظار تایید", value: 1 },
-
-    { label: "تایید شده", value: 2 },
-  ];
-  const { register, handleSubmit } = useForm();
-  const { ChangeStatus, isEditing } = usechangeProposalStatus();
   const { id: projectId } = useParams();
+  const { register, handleSubmit } = useForm();
+  const { chnageProposalStatus, isUpdating } = useChangeProposalStaus();
   const queryClient = useQueryClient();
 
   const onSubmit = (data) => {
-    ChangeStatus(
-      { proposalId, projectId, ...data },
+    chnageProposalStatus(
+      { proposalId, projectId, ...data }, // {projectId, proposalId, status}
       {
         onSuccess: () => {
           onClose();
@@ -38,16 +44,16 @@ function ChangeProposalStatus({ proposalId, onClose }) {
         <RHFSelect
           name="status"
           label="تغییر وضعیت"
-          required
           register={register}
+          required
           options={options}
         />
         <div className="!mt-8">
-          {isEditing ? (
+          {isUpdating ? (
             <Loading />
           ) : (
             <button className="btn btn--primary w-full" type="submit">
-              تغییر وضعیت
+              تایید
             </button>
           )}
         </div>
@@ -55,5 +61,4 @@ function ChangeProposalStatus({ proposalId, onClose }) {
     </div>
   );
 }
-
 export default ChangeProposalStatus;

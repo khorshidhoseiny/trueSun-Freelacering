@@ -1,13 +1,16 @@
-import React from "react";
+import Category from "../ui/category";
+import Header from "../ui/Header";
+import Hero from "../ui/Hero";
 
 function Home() {
   return (
-    <div className="h-screen bg-secondary-0">
-      <div className=" container xl:max-w-screen-xl">
-        <h1 className="p-4 text-xl text-secondary-700">صفحه اصلی</h1>
+    <div className="h-full min-h-screen bg-secondary-0">
+      <Header />
+      <div className="container xl:max-w-screen-xl">
+        <Hero />
+        <Category />
       </div>
     </div>
   );
 }
-
 export default Home;

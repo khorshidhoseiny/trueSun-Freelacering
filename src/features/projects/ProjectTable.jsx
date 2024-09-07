@@ -1,14 +1,15 @@
-import React from "react";
+import useOwnerProjects from "./useOwnerProjects";
 import Loading from "../../ui/Loading";
 import Empty from "../../ui/Empty";
-import useOwnerProjects from "./useOwnerProjects";
 import Table from "../../ui/Table";
 import ProjectRow from "./ProjectRow";
 
 function ProjectTable() {
   const { isLoading, projects } = useOwnerProjects();
+
   if (isLoading) return <Loading />;
-  if (!projects.length) return <Empty resourceName="پروژه " />;
+
+  if (!projects.length) return <Empty resourceName="پروژه" />;
 
   return (
     <Table>
@@ -26,12 +27,10 @@ function ProjectTable() {
       </Table.Header>
       <Table.Body>
         {projects.map((project, index) => (
-          <ProjectRow project={project} index={index} key={project._id} />
+          <ProjectRow key={project._id} project={project} index={index} />
         ))}
-        {console.log()}
       </Table.Body>
     </Table>
   );
 }
-
 export default ProjectTable;

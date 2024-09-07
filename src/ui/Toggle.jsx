@@ -1,7 +1,6 @@
 import { Switch } from "@headlessui/react";
-import React from "react";
 
-function Toggle({ lable, enabled, onChange }) {
+function Toggle({ label, enabled, onChange }) {
   return (
     <Switch.Group>
       <div className="flex items-center gap-x-2">
@@ -10,7 +9,7 @@ function Toggle({ lable, enabled, onChange }) {
           onChange={onChange}
           className={`${
             enabled ? "bg-primary-900" : "bg-secondary-200"
-          } relative inline-flex h-6 w-11 items-center rounded-full focus:outline-none transition-colors `}
+          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none`}
         >
           <span
             className={`${
@@ -18,10 +17,9 @@ function Toggle({ lable, enabled, onChange }) {
             } inline-block h-4 w-4 transform rounded-full bg-secondary-0 transition-transform`}
           />
         </Switch>
-        <Switch.Label className="mr-4">{lable}</Switch.Label>
+        <Switch.Label>{label}</Switch.Label>
       </div>
     </Switch.Group>
   );
 }
-
 export default Toggle;

@@ -1,13 +1,11 @@
-import React from "react";
-
 function TextField({
   label,
   name,
   register,
-  errors,
-  required,
-  validationSchema,
+  validationSchema = {},
   type = "text",
+  required,
+  errors,
 }) {
   return (
     <div>
@@ -22,12 +20,11 @@ function TextField({
         autoComplete="off"
       />
       {errors && errors[name] && (
-        <span className="text-error block mt-2 text-sm">
+        <span className="text-error block text-sm mt-2">
           {errors[name]?.message}
         </span>
       )}
     </div>
   );
 }
-
 export default TextField;

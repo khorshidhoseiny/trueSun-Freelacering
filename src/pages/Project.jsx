@@ -1,12 +1,13 @@
-import React from "react";
-import Loading from "../ui/Loading";
 import ProjectHeader from "../features/project/ProjectHeader";
 import ProposalsTable from "../features/project/ProposalsTable";
 import useProject from "../features/project/useProject";
+import Loading from "../ui/Loading";
 
 function Project() {
   const { isLoading, project } = useProject();
+
   if (isLoading) return <Loading />;
+
   return (
     <div>
       <ProjectHeader project={project} />
@@ -14,5 +15,4 @@ function Project() {
     </div>
   );
 }
-
 export default Project;

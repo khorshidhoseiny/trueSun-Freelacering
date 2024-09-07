@@ -3,10 +3,12 @@ import http from "./httpService";
 export function getOwnerProjectsApi() {
   return http.get("/project/owner-projects").then(({ data }) => data.data);
 }
-export function removeProjectsApi(id) {
+
+export function removeProjectApi(id) {
   return http.delete(`/project/${id}`).then(({ data }) => data.data);
 }
-export function CreateProjectsApi(data) {
+
+export function createProjectApi(data) {
   return http.post(`/project/add`, data).then(({ data }) => data.data);
 }
 
@@ -15,12 +17,17 @@ export function editProjectApi({ id, newProject }) {
     .patch(`/project/update/${id}`, newProject)
     .then(({ data }) => data.data);
 }
-export function toggleProjectApi({ id, data }) {
+
+export function toggleProjectStatusApi({ id, data }) {
+  //{status:"OPEN"}
   return http.patch(`/project/${id}`, data).then(({ data }) => data.data);
 }
+
 export function getProjectApi(id) {
+  //{status:"OPEN"}
   return http.get(`/project/${id}`).then(({ data }) => data.data);
 }
-export function getProjectsApi(qs) {
+
+export function geProjectsApi(qs) {
   return http.get(`/project/list${qs}`).then(({ data }) => data.data);
 }
