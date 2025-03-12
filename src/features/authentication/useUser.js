@@ -10,5 +10,5 @@ export default function useUser() {
 
   const { user } = data || {};
 
-  return { isLoading, user };
+  return { isLoading, user, status };
 }

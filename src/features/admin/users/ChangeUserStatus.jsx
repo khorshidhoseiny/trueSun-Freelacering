@@ -50,7 +50,7 @@ function ChangeUserStatus({ userId, onClose }) {
           {isUpdating ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full" type="submit">
+            <button className="btn btn--primary font-bold w-full" type="submit">
               تایید
             </button>
           )}

@@ -7,9 +7,6 @@ const colors = {
 };
 
 function Stat({ icon, value, title, color }) {
-  // const bgColor = `bg-${color}-100`;
-  // const textColor = `text-${color}-700`;
-
   return (
     <div className="col-span-1 grid grid-rows-2 grid-cols-[6.4rem_1fr] bg-secondary-0 p-4 rounded-lg gap-x-4">
       <div

@@ -17,7 +17,7 @@ function ProjectsHeader() {
       </Modal>
       <button
         onClick={() => setOpen(true)}
-        className="btn btn--primary flex items-center gap-x-2"
+        className="btn font-bold btn--primary flex items-center gap-x-2"
       >
         <HiOutlinePlus />
         <span>اضافه کردن پروژه</span>

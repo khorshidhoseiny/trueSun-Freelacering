@@ -20,9 +20,7 @@ function TextField({
         autoComplete="off"
       />
       {errors && errors[name] && (
-        <span className="text-error block text-sm mt-2">
-          {errors[name]?.message}
-        </span>
+        <span className="text-error">{errors[name]?.message}</span>
       )}
     </div>
   );

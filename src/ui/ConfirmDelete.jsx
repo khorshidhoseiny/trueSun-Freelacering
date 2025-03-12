@@ -6,7 +6,7 @@ function ConfirmDelete({ resourceName, onClose, disabled, onConfirm }) {
       </h2>
       <div className="flex justify-between items-center gap-x-16">
         <button
-          className="btn btn--primary flex-1"
+          className="btn btn--primary font-bold flex-1"
           onClick={onClose}
           disabled={disabled}
         >
@@ -15,7 +15,7 @@ function ConfirmDelete({ resourceName, onClose, disabled, onConfirm }) {
         <button
           onClick={onConfirm}
           disabled={disabled}
-          className="btn btn--danger flex-1 py-3"
+          className="btn btn--danger font-bold flex-1 py-3"
         >
           تایید
         </button>

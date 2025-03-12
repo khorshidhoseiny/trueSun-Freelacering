@@ -9,7 +9,6 @@ export default function useEditProject() {
     mutationFn: editProjectApi,
     onSuccess: (data) => {
       toast.success(data.message);
-
       queryClient.invalidateQueries({
         queryKey: ["owner-projects"],
       });

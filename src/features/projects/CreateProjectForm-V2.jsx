@@ -4,12 +4,14 @@ import TextField from "../../ui/TextField";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DatePickerField from "../../ui/DatePickerField";
-import useCategories from "../../hooks/useCategories";
+
 import useCreateProject from "./useCreateProject";
 import Loading from "../../ui/Loading";
 import useEditProject from "./useEditProject";
+import RadioInputGroup from "../../ui/RadioInputGroup";
+import useCategories from "../../hooks/useCategories";
 
-function CreateProjectForm({ onClose, projectToEdit = {} }) {
+function CreateProjectFormV2({ onClose, projectToEdit = {} }) {
   const { _id: editId } = projectToEdit;
   const isEditSession = Boolean(editId);
 
@@ -17,10 +19,11 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
     title,
     description,
     budget,
-    category,
     deadline,
     tags: prevTags,
+    category,
   } = projectToEdit;
+
   let editValues = {};
   if (isEditSession) {
     editValues = {
@@ -30,6 +33,7 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
       category: category._id,
     };
   }
+  console.log(editValues, "edit values");
 
   const {
     register,
@@ -37,20 +41,17 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
     handleSubmit,
     reset,
   } = useForm({ defaultValues: editValues });
-
-  const [tags, setTags] = useState(prevTags || []);
-  const [date, setDate] = useState(new Date(deadline || ""));
-  const { categories } = useCategories();
-  const { isCreating, createProject } = useCreateProject();
+  const { createProject, isCreating } = useCreateProject();
   const { editProject, isEditing } = useEditProject();
-
+  const { categories } = useCategories();
+  const [date, setDate] = useState(new Date(deadline || ""));
+  const [tags, setTags] = useState(prevTags || []);
   const onSubmit = (data) => {
     const newProject = {
       ...data,
       deadline: new Date(date).toISOString(),
       tags,
     };
-
     if (isEditSession) {
       editProject(
         { id: editId, newProject },
@@ -76,13 +77,13 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
       <TextField
         label="عنوان"
         name="title"
-        register={register}
         required
+        register={register}
         validationSchema={{
-          required: "عنوان ضروری است",
+          required: "وارد کردن عنوان ضروری است!",
           minLength: {
             value: 10,
-            message: "حداقل 10 کاراکتر را وارد کنید",
+            message: "طول عنوان نامعتبر است",
           },
         }}
         errors={errors}
@@ -90,13 +91,13 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
       <TextField
         label="توضیحات"
         name="description"
-        register={register}
         required
+        register={register}
         validationSchema={{
-          required: "توضیحات ضروری است",
+          required: "وارد کردن توضیحات ضروری است!",
           minLength: {
-            value: 15,
-            message: "حداقل 15 کاراکتر را وارد کنید",
+            value: 30,
+            message: "طول توضیحات نامعتبر است",
           },
         }}
         errors={errors}
@@ -104,21 +105,25 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
       <TextField
         label="بودجه"
         name="budget"
-        type="number"
-        register={register}
         required
+        register={register}
         validationSchema={{
-          required: "بودجه ضروری است",
+          required: "وارد کردن بودجه ضروری است!",
+          min: {
+            value: 5,
+            message: "طول توضیحات نامعتبر است",
+          },
         }}
         errors={errors}
       />
       <RHFSelect
         label="دسته بندی"
-        required
         name="category"
         register={register}
         options={categories}
+        required
       />
+
       <div>
         <label className="mb-2 block text-secondary-700">تگ</label>
         <TagsInput value={tags} onChange={setTags} name="tags" />
@@ -136,4 +141,4 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
     </form>
   );
 }
-export default CreateProjectForm;
+export default CreateProjectFormV2;

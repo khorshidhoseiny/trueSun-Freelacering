@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserAvatar from "../features/authentication/UserAvatar";
 import HeaderMenu from "./HeaderMenu";
 import useUser from "../features/authentication/useUser";
 
 function Header() {
+  const navigate = useNavigate();
   const { user } = useUser();
   return (
     <div className="bg-secondary-0 container xl:max-w-screen-xl  py-4 px-8 border-b border-secondary-200">
@@ -25,7 +26,9 @@ function Header() {
             )}
             <HeaderMenu />
           </div>
-          <img src="/Mercury-Logo.png" alt="logo" className="w-24 md:w-36" />
+          <button onClick={() => navigate("/")}>
+            <img src="/Mercury-Logo.png" alt="logo" className="w-24 md:w-36" />
+          </button>
         </nav>
       </div>
     </div>

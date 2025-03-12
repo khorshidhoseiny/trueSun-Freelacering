@@ -24,7 +24,7 @@ function CompleteProfileFrom() {
     try {
       const { user, message } = await mutateAsync(data);
       toast.success(message);
-      if (!user.status !== 2) {
+      if (user.status !== 2) {
         navigate("/");
         toast("پروفایل شما در انتظار تایید است", { icon: "👏" });
         return;
@@ -83,7 +83,10 @@ function CompleteProfileFrom() {
             {isPending ? (
               <Loading />
             ) : (
-              <button type="submit" className="btn btn--primary w-full">
+              <button
+                type="submit"
+                className="btn btn--primary font-bold w-full"
+              >
                 تایید
               </button>
             )}

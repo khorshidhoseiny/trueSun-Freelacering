@@ -77,8 +77,14 @@
   .textField__input {
     @apply w-full py-3 px-4 rounded-xl text-secondary-900 border border-secondary-100 bg-secondary-100 hover:border-primary-500 focus:border-primary-500 focus:bg-secondary-0 transition-all duration-300 ease-out focus:shadow-lg focus:shadow-primary-200 dark:focus:shadow-secondary-200;
   }
+  .gradient__effect {
+    @apply bg-gradient-to-r from-blue-500/70 p-2 rounded-xl to-fuchsia-400/60;
+  }
+  .gradient--hover-bg {
+    @apply bg-gradient-to-r hover:from-sky-500/50 p-2 rounded-xl hover:to-fuchsia-400/50;
+  }
   .btn {
-    @apply px-3 py-1 font-bold rounded-xl transition-all duration-300;
+    @apply px-3 py-1  rounded-xl transition-all duration-300;
   }
   .btn--primary {
     @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300 dark:shadow-secondary-200;
@@ -87,7 +93,7 @@
     @apply bg-secondary-600 text-secondary-100;
   }
   .btn--outline {
-    @apply border border-secondary-700 text-secondary-700;
+    @apply border border-purple-700 text-secondary-700;
   }
   .btn--danger {
     @apply border border-rose-700 text-rose-700;

@@ -14,13 +14,33 @@ const RESEND_TIME = 90;
 function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
+
   const navigate = useNavigate();
+
+  // const { isPending, mutateAsync } = useMutation({
+  //   mutationFn: checkOtp,
+  // });
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: checkOtp,
   });
 
-  const chckOtpHandler = async (e) => {
+  // const checkOtpHandler = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { message, user } = await mutateAsync({ phoneNumber, otp });
+  //     toast.success(message);
+  //     if (user.isActive) {
+  //       if (user.role === "OWNER") navigate("/owner");
+  //     } else {
+  //       navigate("/complete-profile");
+  //     }
+  //   } catch (error) {
+  //     console.log(error?.response?.data?.message);
+  //   }
+  // };
+
+  const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
       const { user, message } = await mutateAsync({ phoneNumber, otp });
@@ -64,7 +84,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
         </p>
       )}
 
-      <form className="space-y-10" onSubmit={chckOtpHandler}>
+      <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold mt-5 text-secondary-800">
           کد تایید را وارد کنید
         </p>
@@ -81,20 +101,21 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
             border: "1px solid rgb(var(--color-secondary-400))",
             borderRadius: "0.6rem",
             backgroundColor: "transparent",
+            color: "rgb(var(--color-secondary-700))",
           }}
         />
         <div>
           <div className="mb-4 flex justify-center items-center text-sm text-secondary-500">
-            {time > 0 ? (
+            {/* {time > 0 ? (
               <p> {time} ثانیه تا ارسال مجدد کد</p>
             ) : (
               <button onClick={onReSendOtp}>ارسال مجدد کد تایید</button>
-            )}
+            )} */}
           </div>
           {isPending ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn btn--primary w-full">
+            <button type="submit" className="btn font-bold btn--primary w-full">
               تایید
             </button>
           )}

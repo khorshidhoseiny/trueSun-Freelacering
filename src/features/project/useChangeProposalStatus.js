@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { changeProposalStatusApi } from "../../services/proposalService";
 
 export default function useChangeProposalStaus() {
-  const { isPending: isUpdating, mutate: chnageProposalStatus } = useMutation({
+  const { isPending: isUpdating, mutate: changeProposalStatus } = useMutation({
     mutationFn: changeProposalStatusApi,
     onSuccess: (data) => {
       toast.success(data.message);
@@ -11,5 +11,5 @@ export default function useChangeProposalStaus() {
     onError: (err) => toast.error(err?.response?.data?.message),
   });
 
-  return { isUpdating, chnageProposalStatus };
+  return { isUpdating, changeProposalStatus };
 }

@@ -19,6 +19,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import AdminLayout from "./features/admin/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import Users from "./pages/Users";
+import { DarkModeProvider2 } from "./context/DarkmodeContext2";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,8 @@ function App() {
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<Project />} />
           </Route>
+
+          {/* freelancer */}
           <Route
             path="/freelancer"
             element={

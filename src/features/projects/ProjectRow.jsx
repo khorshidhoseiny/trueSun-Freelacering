@@ -14,6 +14,8 @@ import ToggleProjectStatus from "./ToggleProjectStatus";
 import { Link } from "react-router-dom";
 
 function ProjectRow({ project, index }) {
+  console.log(project);
+
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const { removeProject } = useRemoveProject();

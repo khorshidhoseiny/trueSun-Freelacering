@@ -20,7 +20,6 @@ function ProtectedRoute({ children }) {
     }
     if (!isAuthorized && !isLoading) navigate("/not-access", { replace: true });
   }, [isAuthenticated, isAuthorized, isLoading, navigate, isVerified]);
-
   // 3. while loading => show a loading
   if (isLoading)
     return (

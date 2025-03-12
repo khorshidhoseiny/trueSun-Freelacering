@@ -6,14 +6,12 @@ import Toggle from "../../ui/Toggle";
 
 function ToggleProjectStatus({ project }) {
   const { status } = project;
+
   const { isUpdating, toggleProjectStatus } = useToggleProjectStatus();
 
   const toggleHandler = () => {
     const newStatus = status === "OPEN" ? "CLOSED" : "OPEN";
-    toggleProjectStatus({
-      id: project._id,
-      data: { status: newStatus },
-    });
+    toggleProjectStatus({ id: project._id, data: { status: newStatus } });
   };
 
   return (

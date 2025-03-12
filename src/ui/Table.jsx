@@ -1,3 +1,5 @@
+import React from "react";
+
 function Table({ children }) {
   return (
     <div className="bg-secondary-0 overflow-x-auto">
@@ -5,9 +7,10 @@ function Table({ children }) {
     </div>
   );
 }
+
 export default Table;
 
-function TableHeader({ children }) {
+function TabelHeader({ children }) {
   return (
     <thead>
       <tr className="title-row">{children}</tr>
@@ -15,14 +18,13 @@ function TableHeader({ children }) {
   );
 }
 
-function TableBody({ children }) {
+function TabelBody({ children }) {
   return <tbody>{children}</tbody>;
 }
-
-function TableRow({ children }) {
-  return <tr>{children}</tr>;
+function TabelRow({ children, key }) {
+  return <tr key={key}>{children}</tr>;
 }
 
-Table.Header = TableHeader;
-Table.Body = TableBody;
-Table.Row = TableRow;
+Table.Row = TabelRow;
+Table.Header = TabelHeader;
+Table.Body = TabelBody;

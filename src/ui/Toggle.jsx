@@ -9,12 +9,12 @@ function Toggle({ label, enabled, onChange }) {
           onChange={onChange}
           className={`${
             enabled ? "bg-primary-900" : "bg-secondary-200"
-          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none`}
+          } relative inline-flex h-6 w-11 items-center rounded-full transition-colors  duration-300 focus:outline-none`}
         >
           <span
             className={`${
               enabled ? "-translate-x-6" : "-translate-x-1"
-            } inline-block h-4 w-4 transform rounded-full bg-secondary-0 transition-transform`}
+            } inline-block h-4 w-4 transform duration-300 ease-in-out rounded-full bg-secondary-0 transition-transform`}
           />
         </Switch>
         <Switch.Label>{label}</Switch.Label>

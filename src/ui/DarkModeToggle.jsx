@@ -1,5 +1,6 @@
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { useDarkMode } from "../context/DarkModeContext";
+// import { useDarkMode2 } from "../context/DarkmodeContext2";
 
 function DarkModeToggle() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();

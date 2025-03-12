@@ -64,7 +64,7 @@ function CreateProposal({ onClose, projectId }) {
           {isCreating ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn btn--primary w-full">
+            <button type="submit" className="btn btn--primary font-bold w-full">
               تایید
             </button>
           )}

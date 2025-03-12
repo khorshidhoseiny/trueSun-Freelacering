@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-console.log(BASE_URL, "baseURL");
 
 const app = axios.create({
   baseURL: BASE_URL,
@@ -12,7 +11,6 @@ app.interceptors.request.use(
   (res) => res,
   (err) => Promise.reject(err)
 );
-
 app.interceptors.response.use(
   (res) => res,
   async (err) => {
@@ -23,11 +21,12 @@ app.interceptors.response.use(
         const { data } = await axios.get(`${BASE_URL}/user/refresh-token`, {
           withCredentials: true,
         });
-        if (data) return app(originalConfig);
+        if (data) app(originalConfig);
       } catch (error) {
-        return Promise.reject(error);
+        Promise.reject(error);
       }
     }
+
     return Promise.reject(err);
   }
 );

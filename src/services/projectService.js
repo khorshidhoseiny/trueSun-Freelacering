@@ -28,6 +28,6 @@ export function getProjectApi(id) {
   return http.get(`/project/${id}`).then(({ data }) => data.data);
 }
 
-export function geProjectsApi(qs) {
+export function getProjectsApi(qs) {
   return http.get(`/project/list${qs}`).then(({ data }) => data.data);
 }
